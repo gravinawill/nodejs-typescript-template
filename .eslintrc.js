@@ -101,6 +101,7 @@ module.exports = {
         }
       },
       rules: {
+        'max-classes-per-file': 'off',
         'no-process-exit': 'off',
         'no-useless-constructor': 'off',
         'class-methods-use-this': 'off',
@@ -149,7 +150,7 @@ module.exports = {
         'import/newline-after-import': 'error',
         'import/no-duplicates': 'error',
         'import/no-deprecated': 'error',
-        'import/group-exports': 'error',
+        'import/group-exports': 'off',
         'import/exports-last': 'error',
         'import/no-cycle': ['error', { maxDepth: 1 }],
         'padding-line-between-statements': [

@@ -23,7 +23,9 @@
       "@models/*": ["src/domain/entities/models/*"],
       "@value-objects/*": ["src/domain/entities/value-objects/*"],
       "@use-cases/*": ["src/domain/use-cases/*"],
-      "@domain/*": ["src/domain/*"]
+      "@domain/*": ["src/domain/*"],
+      "@factories/*": ["src/main/factories/*"],
+      "@main/*": ["src/main/*"]
     },
     "typeRoots": ["../node_modules/@types", "node_modules/@types", "src/main/@types"],
     "forceConsistentCasingInFileNames": true,

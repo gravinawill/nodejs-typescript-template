@@ -1,6 +1,6 @@
 {
   "name": "nodejs-typescript-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Template to start developing a REST API with Node.js and TypeScript",
   "repository": "git@github.com:gravinawill/nodejs-typescript-template.git",
   "license": "MIT",

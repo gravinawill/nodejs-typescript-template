@@ -151,6 +151,7 @@ module.exports = {
         'import/no-duplicates': 'error',
         'import/no-deprecated': 'error',
         'import/group-exports': 'off',
+        '@typescript-eslint/no-namespace': 'off',
         'import/exports-last': 'error',
         'import/no-cycle': ['error', { maxDepth: 1 }],
         'padding-line-between-statements': [

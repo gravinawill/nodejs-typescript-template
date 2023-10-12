@@ -25,7 +25,7 @@
       "@use-cases/*": ["src/domain/use-cases/*"],
       "@domain/*": ["src/domain/*"]
     },
-    "typeRoots": ["../node_modules/@types", "node_modules/@types", "src/types", "src/main/frameworks/express/types"],
+    "typeRoots": ["../node_modules/@types", "node_modules/@types", "src/main/@types"],
     "forceConsistentCasingInFileNames": true,
     "listEmittedFiles": false,
     "listFiles": false,

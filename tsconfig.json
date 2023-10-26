@@ -24,6 +24,11 @@
       "@value-objects/*": ["src/domain/entities/value-objects/*"],
       "@use-cases/*": ["src/domain/use-cases/*"],
       "@domain/*": ["src/domain/*"],
+      "@controllers/*": ["src/application/controllers/*"],
+      "@application/*": ["src/application/*"],
+      "@infrastructure-providers/*": ["src/infrastructure/providers/*"],
+      "@infrastructure-repositories/*": ["src/infrastructure/repositories/*"],
+      "@infrastructure/*": ["src/infrastructure/*"],
       "@factories/*": ["src/main/factories/*"],
       "@main/*": ["src/main/*"]
     },

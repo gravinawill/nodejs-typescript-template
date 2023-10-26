@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      args:
+        - PORT=${PORT}
+    image: ${IMAGE_NAME}:latest
+    container_name: express-typescript-skeleton
+    restart: always
+    # networks:
+    # - ${IMAGE_NAME}-network
+    env_file:
+      - .env
+    environment:
+      - TZ=${TZ}
+      - WAIT_HOSTS=express-typescript-skeleton-postgres:5432
+      - POSTGRESQL_DATABASE_URL=${POSTGRESQL_DATABASE_URL}
+    volumes:
+      - ${LOGS_VOLUME}:/home/node/app/logs
+    ports:
+      - ${EXTERNAL_PORT}:${PORT}
+
+networks:
+  default:
+    name: ${IMAGE_NAME}-network

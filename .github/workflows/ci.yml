@@ -1,0 +1,119 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: ✅ Validate project
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # This NodeJS version is to equal in Dockerfile, .nvrmc and package.json
+        node-version: [20.9.0]
+
+    steps:
+      - name: ⬇️ Checkout project
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      - name: 📥 Install dependencies
+        run: yarn
+
+      - name: 💎 Generate Prisma models
+        run: yarn prisma:generate
+
+      - name: 🖍️ Check types
+        run: yarn check:types
+
+      - name: 💅 Check format
+        run: yarn check:format
+
+      - name: 📑 Check lint
+        run: yarn check:lint
+
+      - name: 📦 Check package.json
+        run: yarn check:packagejson
+
+      - name: 📝 Check markdown
+        run: yarn check:markdown
+
+      - name: 🔤 Check spelling
+        run: yarn check:spelling
+
+      - name: 👩🏻‍💻 Run the danger
+        run: yarn danger:ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    name: 🧑‍🔬 Test project
+    runs-on: ubuntu-latest
+    needs: validate
+    strategy:
+      matrix:
+        # This NodeJS version is to equal in Dockerfile, .nvrmc and package.json
+        node-version: [20.9.0]
+
+    steps:
+      - name: ⬇️ Checkout project
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      - name: 📥 Install dependencies
+        run: yarn
+
+      - name: 💎 Generate Prisma models
+        run: yarn prisma:generate
+
+      - name: 🧪 Run tests
+        run: yarn test:coverage
+
+      - name: 📊 Generate coverage report
+        uses: codecov/codecov-action@v2
+
+  build:
+    name: 🧰 Build project
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        # This NodeJS version is to equal in Dockerfile, .nvrmc and package.json
+        node-version: [20.9.0]
+
+    steps:
+      - name: ⬇️ Checkout project
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+
+      - name: 📥 Install dependencies
+        run: yarn
+
+      - name: 💎 Generate Prisma models
+        run: yarn prisma:generate
+
+      - name: ⚒️ Build project
+        run: yarn build

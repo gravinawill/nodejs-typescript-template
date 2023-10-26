@@ -120,13 +120,15 @@ module.exports = {
         'unicorn/no-process-exit': 'off',
         'unicorn/prefer-module': 'off',
         'security/detect-object-injection': 'off',
+        '@typescript-eslint/naming-convention': 'off',
+        'import/no-extraneous-dependencies': 'off',
         'import/order': 'off',
         'import-helpers/order-imports': [
           'warn',
           {
             // example configuration
             newlinesBetween: 'always',
-            groups: ['module', '/^@shared/', ['parent', 'sibling', 'index']],
+            groups: importGroups,
             alphabetize: { order: 'asc', ignoreCase: true }
           }
         ],

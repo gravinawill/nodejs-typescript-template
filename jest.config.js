@@ -26,7 +26,7 @@ module.exports = {
             tsx: false,
             decorators: true
           },
-          target: 'es2021',
+          target: 'es2022',
           keepClassNames: true,
           transform: {
             legacyDecorator: true,

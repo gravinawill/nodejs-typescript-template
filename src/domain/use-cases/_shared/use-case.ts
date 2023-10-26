@@ -1,7 +1,8 @@
-import { ISendLogTimeUseCaseLoggerProvider } from '@contracts-providers/logger/send-log-time-use-case.logger-provider';
 import { performance } from 'node:perf_hooks';
 
 import { Either } from '@shared/utils/either.util';
+
+import { ISendLogTimeUseCaseLoggerProvider } from '@contracts-providers/logger/send-log-time-use-case.logger-provider';
 
 export abstract class UseCase<Parameters, ResultFailure, ResultSuccess> {
   constructor(public readonly loggerProvider: ISendLogTimeUseCaseLoggerProvider) {}
